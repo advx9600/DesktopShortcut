@@ -49,13 +49,14 @@ namespace NHibernateGenDbSqlite
         }
         public static void check()
         {
-            if (File.Exists(DATABASENAME))
+            String file = System.AppDomain.CurrentDomain.BaseDirectory +"\\"+ DATABASENAME;
+            if (File.Exists(file))
             {
                 return;
             }
             else
             {
-                SQLiteConnection.CreateFile(DATABASENAME);
+                SQLiteConnection.CreateFile(file);
                 conn = new System.Data.SQLite.SQLiteConnection(CONNECT_STRING);
 
                 conn.Open();
