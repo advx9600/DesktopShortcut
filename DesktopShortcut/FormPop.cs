@@ -153,6 +153,10 @@ namespace NHibernateGenDbSqlite
         {
             mManager.delDirConMenuClick(MyParams.getDataFromSender(contextMenuStripDirCon.SourceControl));
         }
+        private void openDirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mManager.openDir(MyParams.getDataFromSender(contextMenuStripExeCon.SourceControl));
+        }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             mManager.doKeyEvent(keyData);
@@ -161,7 +165,7 @@ namespace NHibernateGenDbSqlite
 
         private void panelMain_DragEnter(object sender, DragEventArgs e)
         {
-            mManager.panelMainDragEnter(sender,e);
+            mManager.panelMainDragEnter(sender, e);
         }
         private void panelMain_DragOver(object sender, DragEventArgs e)
         {
@@ -185,6 +189,7 @@ namespace NHibernateGenDbSqlite
         private void panelDir_DragDrop(object sender, DragEventArgs e)
         {
             mManager.panelDirDragDrop(sender, e);
-        }        
+        }
+
     }
 }

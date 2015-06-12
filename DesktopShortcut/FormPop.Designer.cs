@@ -35,6 +35,7 @@
             this.delToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripDirCon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripExeCon.SuspendLayout();
             this.contextMenuStripDirCon.SuspendLayout();
             this.SuspendLayout();
@@ -68,14 +69,15 @@
             // contextMenuStripExeCon
             // 
             this.contextMenuStripExeCon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.delToolStripMenuItem});
+            this.delToolStripMenuItem,
+            this.openDirToolStripMenuItem});
             this.contextMenuStripExeCon.Name = "contextMenuStripExeBtn";
-            this.contextMenuStripExeCon.Size = new System.Drawing.Size(95, 26);
+            this.contextMenuStripExeCon.Size = new System.Drawing.Size(153, 70);
             // 
             // delToolStripMenuItem
             // 
             this.delToolStripMenuItem.Name = "delToolStripMenuItem";
-            this.delToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.delToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.delToolStripMenuItem.Text = "del";
             this.delToolStripMenuItem.Click += new System.EventHandler(this.delToolStripMenuItem_Click);
             // 
@@ -92,6 +94,13 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
             this.toolStripMenuItem1.Text = "del";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // openDirToolStripMenuItem
+            // 
+            this.openDirToolStripMenuItem.Name = "openDirToolStripMenuItem";
+            this.openDirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openDirToolStripMenuItem.Text = "open dir";
+            this.openDirToolStripMenuItem.Click += new System.EventHandler(this.openDirToolStripMenuItem_Click);
             // 
             // FormPop
             // 
@@ -122,6 +131,7 @@
         private System.Windows.Forms.ToolStripMenuItem delToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripDirCon;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openDirToolStripMenuItem;
 
 
     }

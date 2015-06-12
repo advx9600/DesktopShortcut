@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NHibernateGenDbSqlite
 {
-    class MyUtils:MyUtilsBase
+    class MyUtils : MyUtilsBase
     {
 
         public static String getRealPath(String file)
@@ -35,7 +35,7 @@ namespace NHibernateGenDbSqlite
             Win32.ExtractIconEx(fileName, 0, phiconLarge, phiconSmall, 1);
             IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
             return Icon.FromHandle(IconHnd);
-        }     
+        }
 
         public static void startExe(string exeFile)
         {
@@ -51,14 +51,17 @@ namespace NHibernateGenDbSqlite
             p.StartInfo.CreateNoWindow = true;
             p.Start();
         }
-        public static void openFolder(String fileFullName)
+        public static void openFolder(String fileFullName, String arg = null)
         {
             if (!System.IO.Directory.Exists(fileFullName))
             {
                 MessageBox.Show("direct not exist");
                 return;
             }
-            System.Diagnostics.Process.Start(fileFullName);
+            if (arg == null)
+                System.Diagnostics.Process.Start(fileFullName);
+            else
+                System.Diagnostics.Process.Start("explorer.exe", arg);
         }
 
         public static Control FindControlAtPoint(Control container, Point pos)
@@ -91,15 +94,15 @@ namespace NHibernateGenDbSqlite
 
         internal static int getFormBorderWidth(Form form)
         {
-            return (form.Width - form.ClientRectangle.Width)/2;
+            return (form.Width - form.ClientRectangle.Width) / 2;
         }
-        public static Control getChildAtPosition(Control panel, int x, int y,bool isGlobalPosition=false,Form globalForm=null)
+        public static Control getChildAtPosition(Control panel, int x, int y, bool isGlobalPosition = false, Form globalForm = null)
         {
-            if (isGlobalPosition && globalForm !=null)
+            if (isGlobalPosition && globalForm != null)
             {
-                var f= globalForm;
-                x -=  f.Left + panel.Left + getFormBorderWidth(f);
-                y -=  f.Top + panel.Top + getFormTitleBarHeight(f);                
+                var f = globalForm;
+                x -= f.Left + panel.Left + getFormBorderWidth(f);
+                y -= f.Top + panel.Top + getFormTitleBarHeight(f);
             }
             return getChildAtPosition(panel, null, x, y);
         }
@@ -112,7 +115,7 @@ namespace NHibernateGenDbSqlite
                 if (con != exceptCon)
                 {
                     if (x > con.Left && x < con.Left + con.Width && y > con.Top && y < con.Top + con.Height)
-                    {                        
+                    {
                         return con;
                     }
                 }

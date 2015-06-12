@@ -225,7 +225,7 @@ namespace NHibernateGenDbSqlite
             switch (data.type)
             {
                 case TBAppsDao.TYPE_EXE: MyUtils.startExe(data.path); break;
-                case TBAppsDao.TYPE_DIR: MyUtils.openFolder(data.path); break;
+                case TBAppsDao.TYPE_DIR: openDir(data); break;
             }
         }
 
@@ -349,7 +349,7 @@ namespace NHibernateGenDbSqlite
                     if (mouseData.switch2 > -1)
                     {
                         data = MyParams.getDataFromSender(mouseData.getOrginConList()[mouseData.switch2]);
-                    }                    
+                    }
                     TBAppsDaoCheck.reOrderApps(file, data);
                     refreshAppsData();
                     break;
@@ -452,7 +452,22 @@ namespace NHibernateGenDbSqlite
             TBAppsDao.Remove(tbApp);
             refreshAppsData();
         }
-
+        internal void openDir(TbApps tbApps)
+        {
+            var path = tbApps.path;
+            switch (tbApps.type)
+            {
+                case TBAppsDao.TYPE_DIR:
+                    MyUtils.openFolder(path);
+                    break;
+                case TBAppsDao.TYPE_EXE:
+                    MyUtils.openFolder(Path.GetDirectoryName(path), @"/select," + path);
+                    break;
+                default:
+                    MessageBox.Show("not support type");
+                    break;
+            }
+        }
         internal void doKeyEvent(Keys keyData)
         {
             switch (keyData)
