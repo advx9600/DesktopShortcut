@@ -41,7 +41,10 @@ namespace NHibernateGenDbSqlite
             {
                 if (name == null)
                 {
-                    name = Path.GetFileNameWithoutExtension(path);
+                    if (type == TYPE_EXE)
+                        name = Path.GetFileNameWithoutExtension(path);
+                    else if (type == TYPE_DIR)
+                        name = Path.GetFileName(path);
                 }
                 var data = new TbApps
                 {
