@@ -13,7 +13,7 @@ namespace NHibernateGenDbSqlite
     public class Form1Manager
     {
         private Form1 mForm;
-        
+
         public static void setWindow(Form1 f)
         {
             f.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -84,17 +84,11 @@ namespace NHibernateGenDbSqlite
             if (file.ToLower().EndsWith(".lnk"))
             {
                 realPath = MyUtils.getShortCutRealPath(file);
-                if (Directory.Exists(realPath))
+                if (Directory.Exists(realPath) || File.Exists(realPath))
                 {
                     setMouseAction(e, mOUSE_TYPE, realPath);
-                    return;
                 }
-                if (!File.Exists(realPath))
-                {
-                    MessageBox.Show("file not exist");
-                    return;
-                }
-                addType = 1;
+                return;
             }
             else if (file.ToLower().EndsWith(".exe"))
             {
@@ -109,10 +103,11 @@ namespace NHibernateGenDbSqlite
 
             if (addType == 1)
             {
+                if (MyUtils.GetIconByFileName(realPath) == null)
+                {
+                    return;
+                }
                 TBAppsDao.addShortCut(realPath);
-                //var icon = MyUtils.GetIconByFileName(realPath);
-                //var bitmap = icon.ToBitmap();
-                //mForm.BackgroundImage = bitmap;
                 showAnimaSuccess();
             }
             else if (addType == 2)
@@ -150,6 +145,6 @@ namespace NHibernateGenDbSqlite
         {
             TBConfigDao.setX(mForm.Left + "");
             TBConfigDao.setY(mForm.Top + "");
-        }        
+        }
     }
 }
