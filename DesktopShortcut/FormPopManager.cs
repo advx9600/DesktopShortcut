@@ -133,20 +133,26 @@ namespace NHibernateGenDbSqlite
                 switch (type)
                 {
                     case TBAppsDao.TYPE_EXE:
-                        if (TBAppsDaoCheck.isExe(data) && TBAppsDaoCheck.isOk(data)) check = true;
-                        btn.MouseUp += mForm.ExeBtn_MouseUp;
-                        btn.MouseMove += mForm.exeBtn_MouseMove;
-                        btn.MouseDown += mForm.exeBtn_MouseDown;
-                        btn.ContextMenuStrip = mForm.exeCon_ContextMenuStrip;
-                        btn.BackgroundImage = MyUtils.GetIconByFileName(data.path).ToBitmap();
+                        if (TBAppsDaoCheck.isExe(data) && TBAppsDaoCheck.isOk(data))
+                        {
+                            check = true;
+                            btn.MouseUp += mForm.ExeBtn_MouseUp;
+                            btn.MouseMove += mForm.exeBtn_MouseMove;
+                            btn.MouseDown += mForm.exeBtn_MouseDown;
+                            btn.ContextMenuStrip = mForm.exeCon_ContextMenuStrip;
+                            btn.BackgroundImage = MyUtils.GetIconByFileName(data.path).ToBitmap();
+                        }
                         break;
                     case TBAppsDao.TYPE_DIR:
-                        if (TBAppsDaoCheck.isDir(data) && TBAppsDaoCheck.isOk(data)) check = true;
-                        btn.MouseUp += mForm.DirBtn_MouseUp;
-                        btn.MouseMove += mForm.DirBtn_MouseMove;
-                        btn.MouseDown += mForm.DirBtn_MouseDown;
-                        btn.ContextMenuStrip = mForm.dirCon_ContextMenuStrip;
-                        btn.Text = data.name;
+                        if (TBAppsDaoCheck.isDir(data) && TBAppsDaoCheck.isOk(data))
+                        {
+                            check = true;
+                            btn.MouseUp += mForm.DirBtn_MouseUp;
+                            btn.MouseMove += mForm.DirBtn_MouseMove;
+                            btn.MouseDown += mForm.DirBtn_MouseDown;
+                            btn.ContextMenuStrip = mForm.dirCon_ContextMenuStrip;
+                            btn.Text = data.name;
+                        }
                         break;
                 }
                 if (check)
