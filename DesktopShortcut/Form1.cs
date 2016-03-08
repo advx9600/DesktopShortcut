@@ -28,6 +28,7 @@ namespace NHibernateGenDbSqlite
             mFMager = new Form1Manager(this);
             S_MANAGER = mFMager;
             mFormPop = new FormPop();
+            this.TopMost = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
