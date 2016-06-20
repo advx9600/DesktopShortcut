@@ -270,7 +270,7 @@ namespace NHibernateGenDbSqlite
                         //((Control)sender).BringToFront();
                         break;
                     case MOUSE_TYPE.MOVE:
-                        if (mouseData.isDown)
+                        if (mouseData.isDown && mouseData.downX != e.X && mouseData.downY != e.Y)
                         {
                             mouseData.isMove = true;
                             var downCon = (Control)mouseData.downSender;
