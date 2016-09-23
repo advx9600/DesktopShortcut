@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,7 +29,7 @@ namespace NHibernateGenDbSqlite
             return realExe.TargetPath;
         }
         public static Icon GetIconByFileName(string fileName, bool isLarge = true)
-        {
+        {                        
             int[] phiconLarge = new int[1];
             int[] phiconSmall = new int[1];
             //文件名 图标索引 
@@ -44,10 +45,19 @@ namespace NHibernateGenDbSqlite
                 MessageBox.Show("file not exist:" + exeFile);
                 return;
             }
+            
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.FileName = exeFile;
+            if (MyUtils.isTxtFile(exeFile))
+            {
+                p.StartInfo.FileName = "notepad ";
+                p.StartInfo.Arguments = exeFile;
+            }
+            else
+            {
+                p.StartInfo.FileName = exeFile;
+            }            
             p.StartInfo.CreateNoWindow = true;
             p.Start();
         }
@@ -121,6 +131,12 @@ namespace NHibernateGenDbSqlite
                 }
             }
             return null;
+        }
+
+        public static bool isTxtFile(string realPath)
+        {
+            if (realPath.ToLower().EndsWith(".txt")) return true;
+            return false;
         }
     }
 }

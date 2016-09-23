@@ -132,7 +132,7 @@ namespace NHibernateGenDbSqlite
                 bool check = false;
                 switch (type)
                 {
-                    case TBAppsDao.TYPE_EXE:
+                    case TBAppsDao.TYPE_EXE: // include txt
                         if (TBAppsDaoCheck.isExe(data) && TBAppsDaoCheck.isOk(data))
                         {
                             check = true;
@@ -140,7 +140,14 @@ namespace NHibernateGenDbSqlite
                             btn.MouseMove += mForm.exeBtn_MouseMove;
                             btn.MouseDown += mForm.exeBtn_MouseDown;
                             btn.ContextMenuStrip = mForm.exeCon_ContextMenuStrip;
-                            btn.BackgroundImage = MyUtils.GetIconByFileName(data.path).ToBitmap();
+                            if (MyUtils.isTxtFile(data.path))
+                            {
+                                btn.Text = Path.GetFileNameWithoutExtension(data.path);
+                            }
+                            else
+                            {
+                                btn.BackgroundImage = MyUtils.GetIconByFileName(data.path).ToBitmap();
+                            }
                         }
                         break;
                     case TBAppsDao.TYPE_DIR:

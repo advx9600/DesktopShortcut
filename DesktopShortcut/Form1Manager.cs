@@ -90,7 +90,7 @@ namespace NHibernateGenDbSqlite
                 }
                 return;
             }
-            else if (file.ToLower().EndsWith(".exe"))
+            else if (file.ToLower().EndsWith(".exe") || file.ToLower().EndsWith(".txt"))
             {
                 realPath = file;
                 addType = 1;
@@ -102,8 +102,8 @@ namespace NHibernateGenDbSqlite
             }
 
             if (addType == 1)
-            {
-                if (MyUtils.GetIconByFileName(realPath) == null)
+            {                
+                if (!MyUtils.isTxtFile(realPath) && MyUtils.GetIconByFileName(realPath) == null)
                 {
                     return;
                 }

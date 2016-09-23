@@ -27,7 +27,8 @@ namespace NHibernateGenDbSqlite
             InitializeComponent();
             mFMager = new Form1Manager(this);
             S_MANAGER = mFMager;
-            mFormPop = new FormPop();
+            mFormPop = new FormPop();            
+            CheckForIllegalCrossThreadCalls = false; // 允许多进程调用控件
             //this.TopMost = true;
         }
 
