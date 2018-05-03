@@ -20,7 +20,24 @@ namespace NHibernateGenDbSqlite
             Application.Run(new Form1());
         }
         /*static void Main(String[] args)
+        {    // 调用bat测试
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.FileName = "C:\\Users\\nwz\\Downloads\\jadx-0.7.1\\bin\\jadx-gui.bat";
+            try
+            {
+                p.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }*/
+        /*static void Main(String[] args)
         {
+            // 测试NHibernate
             var cfg = new Configuration();
             cfg.Configure();
             cfg.AddAssembly(typeof(Domain.TbConfig).Assembly);

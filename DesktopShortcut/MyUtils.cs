@@ -66,7 +66,7 @@ namespace NHibernateGenDbSqlite
             catch(Exception e)
             {
                 MessageBox.Show(e.ToString());
-            }            
+            }
         }
         public static void openFolder(String fileFullName, String arg = null)
         {
@@ -143,6 +143,12 @@ namespace NHibernateGenDbSqlite
         public static bool isTxtFile(string realPath)
         {
             if (realPath.ToLower().EndsWith(".txt")) return true;
+            return false;
+        }
+
+        public static bool isBatFile(string realPath)
+        {
+            if (realPath.ToLower().EndsWith(".bat")) return true;
             return false;
         }
     }
