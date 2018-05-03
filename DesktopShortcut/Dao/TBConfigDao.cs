@@ -79,7 +79,7 @@ namespace NHibernateGenDbSqlite
             using (ISession session = NHibernateHelper.OpenSession())
             {
                 var list = session.QueryOver<TbConfig>().Where(c => c.key == key).List();
-                if (list.ElementAt(0).val == null) return "";
+                if (list.Count() == 0 || list.ElementAt(0).val == null) return "";
                 return list.ElementAt(0).val.ToString();
             }
         }

@@ -1,12 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopShortcut", "DesktopShortcut\DesktopShortcut.csproj", "{89F72DBF-843A-47C4-9E9A-1F08EBD7B4A5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FF9AC5CD-EFFD-4662-A103-F433B8FA0D35} = {FF9AC5CD-EFFD-4662-A103-F433B8FA0D35}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateGenDbSqlite", "..\NHibernateGenLibSqlite\NHibernateGenDbSqlite.csproj", "{FF9AC5CD-EFFD-4662-A103-F433B8FA0D35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,12 +15,11 @@ Global
 		{89F72DBF-843A-47C4-9E9A-1F08EBD7B4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F72DBF-843A-47C4-9E9A-1F08EBD7B4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F72DBF-843A-47C4-9E9A-1F08EBD7B4A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF9AC5CD-EFFD-4662-A103-F433B8FA0D35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF9AC5CD-EFFD-4662-A103-F433B8FA0D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF9AC5CD-EFFD-4662-A103-F433B8FA0D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF9AC5CD-EFFD-4662-A103-F433B8FA0D35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1DBEF6BF-FB78-4F3F-91D0-65BF68C00917}
 	EndGlobalSection
 EndGlobal

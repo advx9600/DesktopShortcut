@@ -1,5 +1,7 @@
 obj/
 [Bb]in
+packages/
+.vs/
 [Dd]ebug*/
 [Rr]elease*/
 *.sln.cache

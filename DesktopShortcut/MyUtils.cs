@@ -59,7 +59,14 @@ namespace NHibernateGenDbSqlite
                 p.StartInfo.FileName = exeFile;
             }            
             p.StartInfo.CreateNoWindow = true;
-            p.Start();
+            try
+            {
+                p.Start();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }            
         }
         public static void openFolder(String fileFullName, String arg = null)
         {

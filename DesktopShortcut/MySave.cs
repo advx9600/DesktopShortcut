@@ -15,7 +15,7 @@ namespace NHibernateGenDbSqlite
 {
     class MySave
     {
-        private const string DATABASENAME = "my_desk_shortcut.db";
+        private const string DATABASENAME = "my_desk_shortcut.db3";
         private const string CONNECT_STRING = "Data Source=" + DATABASENAME + ";Version=3;";
 
         // table name
