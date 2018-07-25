@@ -230,7 +230,7 @@ namespace NHibernateGenDbSqlite
         internal void deActivated()
         {
             if (!mForm.mIsAwlayShow)
-                mForm.Close();
+                mForm.Hide();
         }
         internal void appBtnClick(object sender)
         {
@@ -485,7 +485,7 @@ namespace NHibernateGenDbSqlite
         {
             switch (keyData)
             {
-                case Keys.Escape: mForm.Close(); break;
+                case Keys.Escape: mForm.Hide(); break;
             }
         }
         internal void panelMainDragEnter(object sender, DragEventArgs e)

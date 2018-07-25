@@ -59,7 +59,7 @@ namespace NHibernateGenDbSqlite
                         }
                         else
                         {
-                            mForm.mFormPop.ShowDialog();
+                            mForm.mFormPop.Show();
                         }
                         break;
                     case MOUSE_TYPE.DROP:
@@ -110,19 +110,21 @@ namespace NHibernateGenDbSqlite
                     return;
                 }
                 TBAppsDao.addShortCut(realPath);
-                showAnimaSuccess();
+                showAnimaSuccessAndResetPopForm();
+
             }
             else if (addType == 2)
             {
                 TBAppsDao.addShortCut(realPath, null, TBAppsDao.TYPE_DIR);
-                showAnimaSuccess();
+                showAnimaSuccessAndResetPopForm();
             }
         }
 
-        private void showAnimaSuccess()
+        private void showAnimaSuccessAndResetPopForm()
         {
             Thread oThread = new Thread(new ThreadStart(threadShowAminateAddSuccess));
             oThread.Start();
+            mForm.mFormPop.resetFormData();
         }
 
         private void threadShowAminateAddSuccess()

@@ -22,6 +22,7 @@ namespace NHibernateGenDbSqlite
         private Form1Manager mFMager;
         public FormPop mFormPop;
         public static Form1Manager S_MANAGER;
+        private KeyboardHook mKeyHook; // 监听按键，用于键盘模拟鼠标滚动
         public Form1()
         {
             InitializeComponent();
@@ -30,12 +31,49 @@ namespace NHibernateGenDbSqlite
             mFormPop = new FormPop();            
             CheckForIllegalCrossThreadCalls = false; // 允许多进程调用控件
             //this.TopMost = true;
+            /********key hook init*********/
+            mKeyHook = new KeyboardHook();
+            mKeyHook.KeyDown += new KeyboardHook.KeyboardHookCallback(keyboardHook_KeyDown);
+            mKeyHook.KeyUp += new KeyboardHook.KeyboardHookCallback(keyboardHook_KeyUp);
+            mKeyHook.Install();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             MySave.check();
             Form1Manager.setWindow(this);
+        }
+
+        private Boolean FnIsDown = false;
+        private void keyboardHook_KeyDown(KeyboardHook.VKeys key)
+        {
+            if (key == KeyboardHook.VKeys.Fn)
+            {
+                FnIsDown = true;
+            }
+            /******
+             listen ctry +up and ctry + down
+             and simulate mouse wheel scroll
+             * ********/
+            if (FnIsDown && key == KeyboardHook.VKeys.UP)
+            {
+                Console.WriteLine("ctry+ up " + DateTime.Now.ToString());
+                mKeyHook.setTempIgnoreKey();
+                MyUtils.mouseScrollEvent(100);
+            }
+            else if (FnIsDown && key == KeyboardHook.VKeys.DOWN)
+            {
+                Console.WriteLine("ctry+ down " + DateTime.Now.ToString());
+                mKeyHook.setTempIgnoreKey();
+                MyUtils.mouseScrollEvent(-100);
+            }
+        }
+        private void keyboardHook_KeyUp(KeyboardHook.VKeys key)
+        {
+            if (key == KeyboardHook.VKeys.Fn)
+            {
+                FnIsDown = false;
+            }
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -76,5 +114,6 @@ namespace NHibernateGenDbSqlite
             }
         }
 
+        
     }
 }

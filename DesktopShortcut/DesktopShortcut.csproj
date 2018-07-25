@@ -116,6 +116,7 @@
       <DependentUpon>FormPop.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPopManager.cs" />
+    <Compile Include="KeyboardHook.cs" />
     <Compile Include="MySave.cs" />
     <Compile Include="MyParams.cs" />
     <Compile Include="MyUtilsBase.cs" />

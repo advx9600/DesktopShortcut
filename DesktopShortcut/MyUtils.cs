@@ -1,6 +1,7 @@
 ﻿using IWshRuntimeLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -150,6 +151,25 @@ namespace NHibernateGenDbSqlite
         {
             if (realPath.ToLower().EndsWith(".bat")) return true;
             return false;
+        }
+
+        public static void debugLog(String log)
+        {
+            var detailLog ="aaaa "+ DateTime.Now.ToString("hh:mm:ss:fff")+"  "+log;
+            Console.WriteLine(detailLog);
+            /*using(var fs= new FileStream(@"C:\Users\nwz\Desktop\temp\win_log.txt", FileMode.Append))
+            {
+                byte[] data = System.Text.Encoding.Default.GetBytes(detailLog+"\n");
+                fs.Write(data, 0, data.Length);
+            }*/
+        }
+
+        private const int MOUSEEVENTF_WHEEL = 0x0800;
+        [DllImport("user32")]
+        private static extern int mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        public static void mouseScrollEvent(int dir)
+        {
+            mouse_event(MOUSEEVENTF_WHEEL, 0, 0, dir, 0);
         }
     }
 }

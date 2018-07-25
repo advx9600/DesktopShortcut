@@ -20,6 +20,7 @@ namespace NHibernateGenDbSqlite
         public int mWidth;
         public int mHeight;
         public bool mIsAwlayShow = false;
+        private bool mIsInitialed = false; // 窗体是否已经初始化
 
         public IList<TbApps> mListTbApps;
 
@@ -27,6 +28,7 @@ namespace NHibernateGenDbSqlite
         private const Int32 MF_BYPOSITION = 0x400;
         private const Int32 MYMENU_DISPLAY_NOFOCUS = 1000;
         //private const Int32 MUMENU2 = 1001;
+
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
@@ -45,11 +47,14 @@ namespace NHibernateGenDbSqlite
         }
         private void FormPop_Load(object sender, EventArgs e)
         {
+            MyUtils.debugLog("start form");
             insertTitleBarMenu();
             MySave.check();
             mIsAwlayShow = false;
             mManager = new FormPopManager(this);
             mManager.resizeListViews();
+            mIsInitialed = true;
+            MyUtils.debugLog("form start OK");
         }
 
         protected override void WndProc(ref Message msg)
@@ -71,6 +76,12 @@ namespace NHibernateGenDbSqlite
         public void alwaysShowWin(bool show)
         {
             mIsAwlayShow = show;
+        }
+
+        public void resetFormData()
+        {
+            if (mManager != null && mIsInitialed)
+                mManager.refreshAppsData();
         }
         public Panel getMainPanel()
         {
