@@ -38,6 +38,15 @@ namespace NHibernateGenDbSqlite
         public FormPop()
         {
             InitializeComponent();
+
+            MyUtils.debugLog("start form");
+            insertTitleBarMenu();
+            MySave.check();
+            mIsAwlayShow = false;
+            mManager = new FormPopManager(this);
+            mManager.resizeListViews();
+            mIsInitialed = true;
+            MyUtils.debugLog("form start OK");
         }
 
         private void insertTitleBarMenu()
@@ -47,14 +56,6 @@ namespace NHibernateGenDbSqlite
         }
         private void FormPop_Load(object sender, EventArgs e)
         {
-            MyUtils.debugLog("start form");
-            insertTitleBarMenu();
-            MySave.check();
-            mIsAwlayShow = false;
-            mManager = new FormPopManager(this);
-            mManager.resizeListViews();
-            mIsInitialed = true;
-            MyUtils.debugLog("form start OK");
         }
 
         protected override void WndProc(ref Message msg)
