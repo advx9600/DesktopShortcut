@@ -30,7 +30,7 @@ namespace NHibernateGenDbSqlite
             return realExe.TargetPath;
         }
         public static Icon GetIconByFileName(string fileName, bool isLarge = true)
-        {                        
+        {
             int[] phiconLarge = new int[1];
             int[] phiconSmall = new int[1];
             //文件名 图标索引 
@@ -46,7 +46,7 @@ namespace NHibernateGenDbSqlite
                 MessageBox.Show("file not exist:" + exeFile);
                 return;
             }
-            
+
             System.Diagnostics.Process p = new System.Diagnostics.Process();
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
@@ -57,16 +57,29 @@ namespace NHibernateGenDbSqlite
             }
             else
             {
+                p.StartInfo.WorkingDirectory = Path.GetDirectoryName(exeFile);
                 p.StartInfo.FileName = exeFile;
-            }            
+            }
             p.StartInfo.CreateNoWindow = true;
             try
             {
                 p.Start();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                // 如果普通权限运行失败，则以管理员身份运行
+                // 参考网址 https://www.cnblogs.com/xuan52rock/p/5777694.html
+                try
+                {
+                    p.StartInfo.UseShellExecute = true;
+                    p.StartInfo.Verb = "runas";
+                    p.StartInfo.RedirectStandardOutput = false;
+                    p.Start();
+                }
+                catch (Exception e2)
+                {
+                    MessageBox.Show(e2.ToString() + "\n" + e.ToString());
+                }
             }
         }
         public static void openFolder(String fileFullName, String arg = null)
@@ -155,7 +168,7 @@ namespace NHibernateGenDbSqlite
 
         public static void debugLog(String log)
         {
-            var detailLog ="aaaa "+ DateTime.Now.ToString("hh:mm:ss:fff")+"  "+log;
+            var detailLog = "aaaa " + DateTime.Now.ToString("hh:mm:ss:fff") + "  " + log;
             Console.WriteLine(detailLog);
             /*using(var fs= new FileStream(@"C:\Users\nwz\Desktop\temp\win_log.txt", FileMode.Append))
             {
