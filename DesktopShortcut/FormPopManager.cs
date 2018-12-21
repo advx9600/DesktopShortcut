@@ -73,7 +73,7 @@ namespace NHibernateGenDbSqlite
             for (int i = 0; i < count; i++)
             {
                 var con = panel.Controls[i];
-            preAddControlParamGetPosition:
+                preAddControlParamGetPosition:
                 int lines = i / widthNum;
                 int cols = i % widthNum;
                 if (except != null)
@@ -237,7 +237,7 @@ namespace NHibernateGenDbSqlite
             var data = (TbApps)((Button)sender).Tag;
             switch (data.type)
             {
-                case TBAppsDao.TYPE_EXE: MyUtils.startExe(data.path); break;
+                case TBAppsDao.TYPE_EXE: MyUtils.startExeAsync(data.path); mForm.Hide(); break;
                 case TBAppsDao.TYPE_DIR: openDir(data); break;
             }
         }

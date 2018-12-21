@@ -38,7 +38,14 @@ namespace NHibernateGenDbSqlite
             IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
             return Icon.FromHandle(IconHnd);
         }
-
+        public static void startExeAsync(string exeFile)
+        {
+            Task task = new Task(() =>
+            {
+                startExe(exeFile);
+            });
+            task.Start();
+        }
         public static void startExe(string exeFile)
         {
             if (!System.IO.File.Exists(exeFile))
