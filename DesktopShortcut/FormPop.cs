@@ -148,6 +148,11 @@ namespace NHibernateGenDbSqlite
             mManager.dirBtnAction(sender, e, MOUSE_TYPE.MOVE);
         }
 
+        internal void ShowFront()
+        {
+            mManager.showFront();
+        }
+
         internal void DirBtn_MouseDown(object sender, MouseEventArgs e)
         {
             mManager.dirBtnAction(sender, e, MOUSE_TYPE.DOWN);

@@ -21,6 +21,8 @@ namespace NHibernateGenDbSqlite
         private const String SEG_POP_HEIGHT = "pop_height";
         private const String SEG_POP_X = "pop_x";
         private const String SEG_POP_Y = "pop_y";
+        // hot key
+        private const String SET_POP_HOTKEY = "pop_hotkey";
 
         public static List<Data> getInitList()
         {
@@ -35,6 +37,7 @@ namespace NHibernateGenDbSqlite
             list.Add(new Data(SEG_POP_HEIGHT, "400"));
             list.Add(new Data(SEG_POP_X, "100"));
             list.Add(new Data(SEG_POP_Y, "100"));
+            list.Add(new Data(SET_POP_HOTKEY, "F")); // F key
 
 
             // check
@@ -84,6 +87,22 @@ namespace NHibernateGenDbSqlite
             }
         }
 
+        public static int getPopHotkey()
+        {
+            String key = getFiled(SET_POP_HOTKEY);
+            try
+            {
+                Keys getKey;
+                Enum.TryParse<Keys>(key, out getKey);
+                return (int)getKey;
+            }
+            catch { }
+            return 0x46;
+        }
+        public static void setPopHotKey(String val)
+        {
+            setFiled(SET_POP_HOTKEY, val);
+        }
         public static String getHeight()
         {
             return getFiled(SEG_HEIGHT);

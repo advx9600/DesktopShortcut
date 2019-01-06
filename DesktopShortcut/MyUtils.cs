@@ -130,6 +130,13 @@ namespace NHibernateGenDbSqlite
             return form.Height - form.ClientRectangle.Height - getFormBorderWidth(form);
         }
 
+        [DllImport("user32.dll ")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+        internal static bool setForegroundWin(IntPtr handle)
+        {
+            return SetForegroundWindow(handle);
+        }
+
         internal static int getFormBorderWidth(Form form)
         {
             return (form.Width - form.ClientRectangle.Width) / 2;

@@ -76,6 +76,12 @@ namespace NHibernateGenDbSqlite
                 }
             }
         }
+
+        internal int GetPopHotkey()
+        {
+            return TBConfigDao.getPopHotkey();
+        }
+
         internal void setMouseAction(DragEventArgs e, MOUSE_TYPE mOUSE_TYPE, String setFile = null)
         {
             string file = setFile == null ? ((string[])e.Data.GetData(DataFormats.FileDrop))[0] : setFile;

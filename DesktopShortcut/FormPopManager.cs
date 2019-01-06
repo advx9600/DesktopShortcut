@@ -170,6 +170,17 @@ namespace NHibernateGenDbSqlite
             panelControlReset(panel);
         }
 
+        // 快捷键显示窗口
+        internal void showFront()
+        {
+            mForm.TopMost = true;
+            mForm.Show();
+            if (!MyUtils.setForegroundWin(mForm.Handle))
+            {
+                mForm.Hide();
+            }
+        }
+
         private void delControls(Control panel)
         {
             int count = panel.Controls.Count;

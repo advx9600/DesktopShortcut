@@ -28,7 +28,7 @@ namespace NHibernateGenDbSqlite
             InitializeComponent();
             mFMager = new Form1Manager(this);
             S_MANAGER = mFMager;
-            mFormPop = new FormPop();            
+            mFormPop = new FormPop();
             CheckForIllegalCrossThreadCalls = false; // 允许多进程调用控件
             //this.TopMost = true;
             /********key hook init*********/
@@ -42,15 +42,29 @@ namespace NHibernateGenDbSqlite
         {
             MySave.check();
             Form1Manager.setWindow(this);
+            mPopHotkey = mFMager.GetPopHotkey();
         }
 
         private Boolean FnIsDown = false;
+        private Boolean CtryIsDown = false;
+        private Boolean ShiftIsDown = false;
+        private int mPopHotkey;
+
         private void keyboardHook_KeyDown(KeyboardHook.VKeys key)
         {
             if (key == KeyboardHook.VKeys.Fn)
             {
                 FnIsDown = true;
             }
+            else if (key == KeyboardHook.VKeys.LCONTROL)
+            {
+                CtryIsDown = true;
+            }
+            else if (key == KeyboardHook.VKeys.LSHIFT)
+            {
+                ShiftIsDown = true;
+            }
+            //Console.WriteLine("key is " + key);
             /******
              listen ctry +up and ctry + down
              and simulate mouse wheel scroll
@@ -67,12 +81,25 @@ namespace NHibernateGenDbSqlite
                 mKeyHook.setTempIgnoreKey();
                 MyUtils.mouseScrollEvent(-100);
             }
+
+            if (CtryIsDown && ShiftIsDown && (int)key == mPopHotkey)
+            {
+                mFormPop.ShowFront();
+            }
         }
         private void keyboardHook_KeyUp(KeyboardHook.VKeys key)
         {
             if (key == KeyboardHook.VKeys.Fn)
             {
                 FnIsDown = false;
+            }
+            else if (key == KeyboardHook.VKeys.LCONTROL)
+            {
+                CtryIsDown = false;
+            }
+            else if (key == KeyboardHook.VKeys.LSHIFT)
+            {
+                ShiftIsDown = false;
             }
         }
 
@@ -114,6 +141,6 @@ namespace NHibernateGenDbSqlite
             }
         }
 
-        
+
     }
 }
