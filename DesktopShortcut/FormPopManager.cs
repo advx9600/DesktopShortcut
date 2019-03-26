@@ -111,6 +111,14 @@ namespace NHibernateGenDbSqlite
         {
             addData(mForm.getDirPanel(), 50, 32, TBAppsDao.TYPE_DIR);
         }
+
+        private void setBtnBackggroundAsync(object obj)
+        {
+            var btn = (Button)obj;
+            var data = (TbApps)btn.Tag;
+            btn.BackgroundImage = MyUtils.GetIconByFileName(data.path).ToBitmap();
+        }
+
         private void addData(Control panel, int width, int height, int type)
         {
             var list = mForm.mListTbApps;
@@ -146,7 +154,9 @@ namespace NHibernateGenDbSqlite
                             }
                             else
                             {
-                                btn.BackgroundImage = MyUtils.GetIconByFileName(data.path).ToBitmap();
+                                btn.Tag = data;
+                                Thread t = new Thread(new ParameterizedThreadStart(setBtnBackggroundAsync));
+                                t.Start(btn);
                             }
                         }
                         break;
