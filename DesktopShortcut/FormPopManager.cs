@@ -180,6 +180,31 @@ namespace NHibernateGenDbSqlite
             panelControlReset(panel);
         }
 
+        private void SetHotKeyBack(TbApps app, string key)
+        {
+            app.hotkey = key;
+            MyDao.Update(app);
+            if (!string.IsNullOrEmpty(key))
+            {
+                foreach (var item in this.mForm.mListTbApps)
+                {
+                    if (key.Equals(item.hotkey) && item.Id != app.Id)
+                    {
+                        item.hotkey = "";
+                        MyDao.Update(item);
+                    }
+                }
+            }
+
+            refreshAppsData();
+        }
+        internal void setHotKey(TbApps app, EventArgs e)
+        {
+            var callback = new FormSetKey.SetHotKeyCallback(SetHotKeyBack);
+            var form = new FormSetKey(app, callback);
+            form.Show();
+        }
+
         // 快捷键显示窗口
         internal void showFront()
         {
@@ -256,6 +281,11 @@ namespace NHibernateGenDbSqlite
         internal void appBtnClick(object sender)
         {
             var data = (TbApps)((Button)sender).Tag;
+            startApp(data);
+        }
+
+        private void startApp(TbApps data)
+        {
             switch (data.type)
             {
                 case TBAppsDao.TYPE_EXE: MyUtils.startExeAsync(data.path); mForm.Hide(); break;
@@ -507,6 +537,15 @@ namespace NHibernateGenDbSqlite
             switch (keyData)
             {
                 case Keys.Escape: mForm.Hide(); break;
+            }
+
+            foreach (var item in mForm.mListTbApps)
+            {
+                if (keyData.ToString().Equals(item.hotkey))
+                {
+                    startApp(item);
+                    break;
+                }
             }
         }
         internal void panelMainDragEnter(object sender, DragEventArgs e)

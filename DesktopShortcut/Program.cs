@@ -18,6 +18,7 @@ namespace NHibernateGenDbSqlite
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            //Application.Run(new FormSetKey(null));
         }
         /*static void Main(String[] args)
         {    // 调用bat测试

@@ -174,6 +174,16 @@ namespace NHibernateGenDbSqlite
         {
             mManager.openDir(MyParams.getDataFromSender(contextMenuStripExeCon.SourceControl));
         }
+        private void addHotKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mManager.setHotKey(MyParams.getDataFromSender(contextMenuStripExeCon.SourceControl), e);
+        }
+
+        private void setHotKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mManager.setHotKey(MyParams.getDataFromSender(contextMenuStripDirCon.SourceControl), e);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             mManager.doKeyEvent(keyData);
@@ -208,5 +218,6 @@ namespace NHibernateGenDbSqlite
             mManager.panelDirDragDrop(sender, e);
         }
 
+        
     }
 }

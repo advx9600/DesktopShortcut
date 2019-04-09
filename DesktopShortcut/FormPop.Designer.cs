@@ -33,9 +33,11 @@
             this.panelDir = new System.Windows.Forms.Panel();
             this.contextMenuStripExeCon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.delToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addHotKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripDirCon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setHotKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripExeCon.SuspendLayout();
             this.contextMenuStripDirCon.SuspendLayout();
             this.SuspendLayout();
@@ -45,9 +47,10 @@
             this.panelMain.AllowDrop = true;
             this.panelMain.AutoScroll = true;
             this.panelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMain.Location = new System.Drawing.Point(12, 12);
+            this.panelMain.Location = new System.Drawing.Point(16, 15);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(4);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(50, 64);
+            this.panelMain.Size = new System.Drawing.Size(66, 80);
             this.panelMain.TabIndex = 2;
             this.panelMain.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelMain_DragDrop);
             this.panelMain.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelMain_DragEnter);
@@ -58,9 +61,10 @@
             this.panelDir.AllowDrop = true;
             this.panelDir.AutoScroll = true;
             this.panelDir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDir.Location = new System.Drawing.Point(96, 12);
+            this.panelDir.Location = new System.Drawing.Point(128, 15);
+            this.panelDir.Margin = new System.Windows.Forms.Padding(4);
             this.panelDir.Name = "panelDir";
-            this.panelDir.Size = new System.Drawing.Size(50, 64);
+            this.panelDir.Size = new System.Drawing.Size(66, 80);
             this.panelDir.TabIndex = 3;
             this.panelDir.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelDir_DragDrop);
             this.panelDir.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelDir_DragEnter);
@@ -68,47 +72,66 @@
             // 
             // contextMenuStripExeCon
             // 
+            this.contextMenuStripExeCon.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripExeCon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.delToolStripMenuItem,
-            this.openDirToolStripMenuItem});
+            this.openDirToolStripMenuItem,
+            this.addHotKeyToolStripMenuItem});
             this.contextMenuStripExeCon.Name = "contextMenuStripExeBtn";
-            this.contextMenuStripExeCon.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStripExeCon.Size = new System.Drawing.Size(159, 76);
             // 
             // delToolStripMenuItem
             // 
             this.delToolStripMenuItem.Name = "delToolStripMenuItem";
-            this.delToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.delToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.delToolStripMenuItem.Text = "del";
             this.delToolStripMenuItem.Click += new System.EventHandler(this.delToolStripMenuItem_Click);
-            // 
-            // contextMenuStripDirCon
-            // 
-            this.contextMenuStripDirCon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStripDirCon.Name = "contextMenuStripExeBtn";
-            this.contextMenuStripDirCon.Size = new System.Drawing.Size(95, 26);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
-            this.toolStripMenuItem1.Text = "del";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // openDirToolStripMenuItem
             // 
             this.openDirToolStripMenuItem.Name = "openDirToolStripMenuItem";
-            this.openDirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openDirToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.openDirToolStripMenuItem.Text = "open dir";
             this.openDirToolStripMenuItem.Click += new System.EventHandler(this.openDirToolStripMenuItem_Click);
             // 
+            // addHotKeyToolStripMenuItem
+            // 
+            this.addHotKeyToolStripMenuItem.Name = "addHotKeyToolStripMenuItem";
+            this.addHotKeyToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.addHotKeyToolStripMenuItem.Text = "set hot key";
+            this.addHotKeyToolStripMenuItem.Click += new System.EventHandler(this.addHotKeyToolStripMenuItem_Click);
+            // 
+            // contextMenuStripDirCon
+            // 
+            this.contextMenuStripDirCon.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripDirCon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.setHotKeyToolStripMenuItem});
+            this.contextMenuStripDirCon.Name = "contextMenuStripExeBtn";
+            this.contextMenuStripDirCon.Size = new System.Drawing.Size(211, 80);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.toolStripMenuItem1.Text = "del";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // setHotKeyToolStripMenuItem
+            // 
+            this.setHotKeyToolStripMenuItem.Name = "setHotKeyToolStripMenuItem";
+            this.setHotKeyToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.setHotKeyToolStripMenuItem.Text = "set hot key";
+            this.setHotKeyToolStripMenuItem.Click += new System.EventHandler(this.setHotKeyToolStripMenuItem_Click);
+            // 
             // FormPop
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(223, 213);
+            this.ClientSize = new System.Drawing.Size(297, 266);
             this.Controls.Add(this.panelDir);
             this.Controls.Add(this.panelMain);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormPop";
             this.ShowInTaskbar = false;
             this.Text = "FormPop";
@@ -132,7 +155,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripDirCon;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem openDirToolStripMenuItem;
-
-
+        private System.Windows.Forms.ToolStripMenuItem addHotKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setHotKeyToolStripMenuItem;
     }
 }

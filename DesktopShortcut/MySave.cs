@@ -43,7 +43,7 @@ namespace NHibernateGenDbSqlite
                 }
             }
 
-            sql = "CREATE TABLE " + TB_APPS + "(id INTEGER PRIMARY KEY AUTOINCREMENT,name varchar(100),type int default 0,path varchar(255))";
+            sql = "CREATE TABLE " + TB_APPS + "(id INTEGER PRIMARY KEY AUTOINCREMENT,name varchar(100),type int default 0,path varchar(255),hotkey varchar(255))";
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();            
         }

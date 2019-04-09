@@ -11,6 +11,7 @@
     <property name="name" />
     <property name="path" />
     <property name="type" />
+    <property name="hotkey" />
   </class>
 
 </hibernate-mapping>
