@@ -43,6 +43,7 @@ namespace NHibernateGenDbSqlite
             MySave.check();
             Form1Manager.setWindow(this);
             mPopHotkey = mFMager.GetPopHotkey();
+            MyUtils.RegisterHotKey(Handle, HotKeyID, MyUtils.KeyModifiers.Ctrl | MyUtils.KeyModifiers.Shift, (Keys)mPopHotkey);
         }
 
         private Boolean FnIsDown = false;
@@ -84,7 +85,7 @@ namespace NHibernateGenDbSqlite
 
             if (CtryIsDown && ShiftIsDown && (int)key == mPopHotkey)
             {
-                mFormPop.ShowFront();
+                //mFormPop.ShowFront();
             }
         }
         private void keyboardHook_KeyUp(KeyboardHook.VKeys key)
@@ -100,6 +101,30 @@ namespace NHibernateGenDbSqlite
             else if (key == KeyboardHook.VKeys.LSHIFT)
             {
                 ShiftIsDown = false;
+            }
+        }
+
+        private const int WM_HOTKEY = 0x312; //窗口消息：热键
+        private const int WM_CREATE = 0x1; //窗口消息：创建
+        private const int WM_DESTROY = 0x2; //窗口消息：销毁
+
+        private const int HotKeyID = 1; //热键ID（自定义）
+
+        protected override void WndProc(ref Message msg)
+        {
+            base.WndProc(ref msg);
+            switch (msg.Msg)
+            {
+                case WM_HOTKEY: //窗口消息：热键
+                    int tmpWParam = msg.WParam.ToInt32();
+                    if (tmpWParam == HotKeyID)
+                    {
+                        mFormPop.ShowFront();
+                    }
+                    break;
+                case WM_DESTROY: //窗口消息：销毁
+                    MyUtils.UnregisterHotKey(this.Handle, HotKeyID); //销毁热键
+                    break;
             }
         }
 
