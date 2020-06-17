@@ -61,6 +61,11 @@ namespace NHibernateGenDbSqlite
             {
                 p.StartInfo.FileName = "notepad ";
                 p.StartInfo.Arguments = exeFile;
+            }else if (MyUtils.isVbsFile(exeFile))
+            {
+                p.StartInfo.FileName = @"cscript";
+                p.StartInfo.WorkingDirectory = Path.GetDirectoryName(exeFile);
+                p.StartInfo.Arguments = Path.GetFileName(exeFile);
             }
             else
             {
@@ -76,6 +81,7 @@ namespace NHibernateGenDbSqlite
             {
                 // 如果普通权限运行失败，则以管理员身份运行
                 // 参考网址 https://www.cnblogs.com/xuan52rock/p/5777694.html
+                Console.Write(e.Message);
                 try
                 {
                     p.StartInfo.UseShellExecute = true;
@@ -174,9 +180,21 @@ namespace NHibernateGenDbSqlite
             return false;
         }
 
+        public static bool isExeFile(string realPath)
+        {
+            if (realPath.ToLower().EndsWith(".exe")) return true;
+            return false;
+        }
+
         public static bool isBatFile(string realPath)
         {
             if (realPath.ToLower().EndsWith(".bat")) return true;
+            return false;
+        }
+
+        public static bool isVbsFile(string realPath)
+        {
+            if (realPath.ToLower().EndsWith(".vbs")) return true;
             return false;
         }
 

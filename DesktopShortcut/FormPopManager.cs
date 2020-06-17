@@ -148,7 +148,7 @@ namespace NHibernateGenDbSqlite
                             btn.MouseMove += mForm.exeBtn_MouseMove;
                             btn.MouseDown += mForm.exeBtn_MouseDown;
                             btn.ContextMenuStrip = mForm.exeCon_ContextMenuStrip;
-                            if (MyUtils.isTxtFile(data.path) || MyUtils.isBatFile(data.path))
+                            if (MyUtils.isTxtFile(data.path) || MyUtils.isBatFile(data.path) || MyUtils.isVbsFile(data.path))
                             {
                                 btn.Text = Path.GetFileNameWithoutExtension(data.path);
                             }

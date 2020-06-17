@@ -96,7 +96,7 @@ namespace NHibernateGenDbSqlite
                 }
                 return;
             }
-            else if (file.ToLower().EndsWith(".exe") || file.ToLower().EndsWith(".txt") || file.ToLower().EndsWith(".bat"))
+            else if (file.ToLower().EndsWith(".vbs") || file.ToLower().EndsWith(".exe") || file.ToLower().EndsWith(".txt") || file.ToLower().EndsWith(".bat"))
             {
                 /* 处理各种扩展名文件拖载过来后的处理 */
                 realPath = file;
@@ -111,7 +111,7 @@ namespace NHibernateGenDbSqlite
             if (addType == 1)
             {
                 /* 是否显示快捷方式 */
-                if (!MyUtils.isBatFile(realPath) && !MyUtils.isTxtFile(realPath) && MyUtils.GetIconByFileName(realPath) == null)
+                if (MyUtils.isExeFile(realPath)  && MyUtils.GetIconByFileName(realPath) == null)
                 {
                     return;
                 }
