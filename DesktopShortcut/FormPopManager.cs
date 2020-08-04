@@ -200,8 +200,8 @@ namespace NHibernateGenDbSqlite
         }
         internal void setHotKey(TbApps app, EventArgs e)
         {
-            var callback = new FormSetKey.SetHotKeyCallback(SetHotKeyBack);
-            var form = new FormSetKey(app, callback);
+            //var callback = new FormSetKey.SetHotKeyCallback(SetHotKeyBack);
+            var form = new FormSetKey(app, SetHotKeyBack);
             form.Show();
         }
 
